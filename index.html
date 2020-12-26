@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rock Paper Scissors</title>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <script>
+      function computerPlay() {
+        let num = Math.floor(Math.random() * 3);
+        switch (num) {
+          case 0:
+            return "rock";
+          case 1:
+            return "paper";
+          case 2:
+            return "scissors";
+          default:
+            return "Something has gone terribly wrong";
+        }
+      }
+
+      function playerSelection() {
+        while (true) {
+          let playerChoice = prompt("Type rock, paper or scissors: ");
+          playerChoice = playerChoice.toLowerCase();
+          if (
+            playerChoice == "scissors" ||
+            playerChoice == "paper" ||
+            playerChoice == "rock"
+          ) {
+            return playerChoice;
+          }
+        }
+      }
+
+      function playRound(playerChoice, computerChoice) {
+        if (playerChoice == computerChoice) {
+          console.log("Tie game!");
+          return "tie";
+        } else if (
+          (playerChoice == "rock" && computerChoice == "paper") ||
+          (playerChoice == "paper" && computerChoice == "scissors") ||
+          (playerChoice == "scissors" && computerChoice == "rock")
+        ) {
+          console.log(
+            "You Lose! " +
+              playerChoice.substring(0, 1).toUpperCase() +
+              playerChoice.substring(1).toLowerCase() +
+              " beats " +
+              computerChoice.substring(0, 1).toUpperCase() +
+              computerChoice.substring(1).toLowerCase()
+          );
+          return "computer";
+        } else {
+          console.log(
+            "You Win! " +
+              playerChoice.substring(0, 1).toUpperCase() +
+              playerChoice.substring(1).toLowerCase() +
+              " beats " +
+              computerChoice.substring(0, 1).toUpperCase() +
+              computerChoice.substring(1).toLowerCase()
+          );
+          return "player";
+        }
+      }
+
+      function game() {
+        let playerScore = 0;
+        let computerScore = 0;
+
+        while (true) {
+          const playerChoice = playerSelection();
+          const computerChoice = computerPlay();
+          let winner = playRound(playerChoice, computerChoice);
+          switch (winner) {
+            case "player":
+              playerScore += 1;
+              break;
+            case "computer":
+              computerScore += 1;
+              break;
+            default:
+              break;
+          }
+          console.log("Player score: " + playerScore);
+          console.log("Computer score: " + computerScore);
+          if (playerScore == 3) {
+              console.log("Player Wins the game! Congrats!");
+              break;
+          } else if (computerScore == 3) {
+              console.log("Computer Wins the game! Sucks 2 Suck");
+              break;
+          } 
+        }
+      }
+      game();
+    </script>
+  </body>
+</html>
