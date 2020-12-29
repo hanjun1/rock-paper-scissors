@@ -3,98 +3,60 @@
   <head>
     <title>Rock Paper Scissors</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <script>
-      function computerPlay() {
-        let num = Math.floor(Math.random() * 3);
-        switch (num) {
-          case 0:
-            return "rock";
-          case 1:
-            return "paper";
-          case 2:
-            return "scissors";
-          default:
-            return "Something has gone terribly wrong";
-        }
-      }
-
-      function playerSelection() {
-        while (true) {
-          let playerChoice = prompt("Type rock, paper or scissors: ");
-          playerChoice = playerChoice.toLowerCase();
-          if (
-            playerChoice == "scissors" ||
-            playerChoice == "paper" ||
-            playerChoice == "rock"
-          ) {
-            return playerChoice;
-          }
-        }
-      }
-
-      function playRound(playerChoice, computerChoice) {
-        if (playerChoice == computerChoice) {
-          console.log("Tie game!");
-          return "tie";
-        } else if (
-          (playerChoice == "rock" && computerChoice == "paper") ||
-          (playerChoice == "paper" && computerChoice == "scissors") ||
-          (playerChoice == "scissors" && computerChoice == "rock")
-        ) {
-          console.log(
-            "You Lose! " +
-              playerChoice.substring(0, 1).toUpperCase() +
-              playerChoice.substring(1).toLowerCase() +
-              " beats " +
-              computerChoice.substring(0, 1).toUpperCase() +
-              computerChoice.substring(1).toLowerCase()
-          );
-          return "computer";
-        } else {
-          console.log(
-            "You Win! " +
-              playerChoice.substring(0, 1).toUpperCase() +
-              playerChoice.substring(1).toLowerCase() +
-              " beats " +
-              computerChoice.substring(0, 1).toUpperCase() +
-              computerChoice.substring(1).toLowerCase()
-          );
-          return "player";
-        }
-      }
-
-      function game() {
-        let playerScore = 0;
-        let computerScore = 0;
-
-        while (true) {
-          const playerChoice = playerSelection();
-          const computerChoice = computerPlay();
-          let winner = playRound(playerChoice, computerChoice);
-          switch (winner) {
-            case "player":
-              playerScore += 1;
-              break;
-            case "computer":
-              computerScore += 1;
-              break;
-            default:
-              break;
-          }
-          console.log("Player score: " + playerScore);
-          console.log("Computer score: " + computerScore);
-          if (playerScore == 3) {
-              console.log("Player Wins the game! Congrats!");
-              break;
-          } else if (computerScore == 3) {
-              console.log("Computer Wins the game! Sucks 2 Suck");
-              break;
-          } 
-        }
-      }
-      game();
-    </script>
+    <header id="header">
+      <h1 id="header-text">ROCK PAPER SCISSORS!</h1>
+    </header>
+    <div id="scoreboard">
+      <div id="my-score-container" class="score-container">
+        <h2 class="score-header">My Score</h2>
+        <p id="my-score" class="score">0</p>
+      </div>
+      <div id="computer-score-container" class="score-container">
+        <h2 class="score-header">Computer Score</h2>
+        <p id="computer-score" class="score">0</p>
+      </div>
+    </div>
+    <div id="main-header-container">
+      <h2 id="main-header">Choose Your Weapon</h2>
+    </div>
+    <div id="main">
+      <div class="selection">
+        <input type="image" id="rock" src="images/rock.png" />
+      </div>
+      <div class="selection">
+        <input type="image" id="paper" src="images/paper.png" />
+      </div>
+      <div class="selection">
+        <input
+          type="image"
+          id="scissors"
+          src="images/scissor.png"
+          alt="scissors"
+        />
+      </div>
+    </div>
+    <div id="result-container">
+      <p id="result"></p>
+    </div>
+    <div id="play-again-container">
+      <button
+        id="play-again"
+        style="--content: 'Play Again!'"
+        class="disappear"
+      >
+        <div class="left"></div>
+        Play Again!
+        <div class="right"></div>
+      </button>
+    </div>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
